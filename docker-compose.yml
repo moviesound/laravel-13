@@ -2,11 +2,10 @@ services:
   app:
     build:
       context: ./docker/php
-      dockerfile: Dockerfile
     container_name: app
     volumes:
       - ./app:/var/www/app
-      - ./docker/sock:/sock
+      - php-socket:/sock
     env_file:
       - ./env/app.dev.env
     depends_on:
@@ -18,13 +17,12 @@ services:
   nginx:
     build:
       context: ./docker/nginx
-      dockerfile: Dockerfile
     ports:
       - "8055:80"
     volumes:
       - ./app:/var/www/app
       - ./docker/nginx/default.dev.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./docker/sock:/sock
+      - php-socket:/sock
     depends_on:
       - app
     networks:

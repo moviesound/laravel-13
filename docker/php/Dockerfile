@@ -16,17 +16,10 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# УДАЛЯЕМ дефолтный www.conf (он слушает 9000)
-RUN rm -f /usr/local/etc/php-fpm.d/www.conf
-
-# Создаём папку под unix-сокет
+# создаём папку под сокет
 RUN mkdir -p /sock && chown -R www-data:www-data /sock
 
-# Кладём СВОЙ конфиг php-fpm
-COPY docker-www.conf /usr/local/etc/php-fpm.d/www.conf
-
-# Запускаем сокет
-CMD ["php-fpm", "-F", "-y", "/usr/local/etc/php-fpm.d/www.conf"]
+# ВАЖНО: не заменяем, а ПЕРЕОПРЕДЕЛЯЕМ
+COPY docker-www.conf /usr/local/etc/php-fpm.d/zz-www.conf
