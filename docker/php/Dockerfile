@@ -16,10 +16,13 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+#RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
+
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # создаём папку под сокет
 RUN mkdir -p /sock && chown -R www-data:www-data /sock
+#RUN mkdir -p /sock && chmod 777 /sock
 
 # ВАЖНО: не заменяем, а ПЕРЕОПРЕДЕЛЯЕМ
 COPY docker-www.conf /usr/local/etc/php-fpm.d/zz-www.conf
