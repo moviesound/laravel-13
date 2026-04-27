@@ -46,6 +46,9 @@ return new class extends Migration
             $table->string('evening_time_workdays', 10)->default('21:00');
             $table->string('evening_time_holidays', 10)->default('22:00');
 
+            $table->unsignedTinyInteger('morning_digest_status')->default(1)->index();//index
+            $table->unsignedTinyInteger('evening_digest_status')->default(1)->index();//index
+
             $table->unsignedTinyInteger('digest_currencies')->default(0);
             $table->unsignedTinyInteger('digest_weather')->default(1);
 

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->set('week_days', ['1','2','3','4','5','6','7'])->nullable()->comment('Дни недели для weekly');
             $table->text('weekly_common_time')->nullable()->comment('Общее время для всех выбранных дней недели');
             $table->text('weekly_different_time')->nullable()->comment('Разное время для выбранных дней недели');
-            $table->string('month_days', 50)->nullable()->comment('Дни месяца для monthly/quarterly/yearly');
+            $table->string('month_days', 50)->nullable()->comment('Дни месяца для monthly');
             $table->text('monthly_common_time')->nullable()->comment('Общее время для всех выбранных дней месяца');
             $table->text('monthly_different_time')->nullable()->comment('Разное время для всех выбранных дней месяца');
             $table->enum('quarter_type', ['deadline','period'])->nullable()->comment('Тип ежеквартальной задачи (дедлайн или период');

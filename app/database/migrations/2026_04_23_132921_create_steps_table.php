@@ -12,16 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('steps', function (Blueprint $table) {
-            $table->string('user_socials_id', 100);
-
-            $table->enum('type', [
-                'telegram',
-                'vk',
-                'max',
-                'web',
-                'android',
-                'ios'
-            ])->default('telegram');
+            $table->unsignedBigInteger('user_social_id')->primary();
 
             $table->string('scenario', 64);
             $table->string('step', 64);
@@ -34,12 +25,9 @@ return new class extends Migration
                 ->useCurrent()
                 ->useCurrentOnUpdate();
 
-            $table->unsignedBigInteger('entity_id')->nullable();
+            $table->unsignedBigInteger('common_entity_id')->nullable();
 
-
-            $table->primary(['user_socials_id', 'type']);
-
-            $table->index('entity_id');
+            $table->index('common_entity_id');
             $table->index('updated_at');
             $table->index('scenario');
             $table->index('step');
