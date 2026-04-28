@@ -21,3 +21,17 @@
 
        chown -R www-data:www-data storage bootstrap/cache
        chmod -R 775 storage bootstrap/cache
+
+6. Настраиваем домены. В .env Laravel должны быть 
+прописаны домены, можно использовать любые url.
+
+       API_HOST="api.localhost"
+       WEB_HOST="web.localhost"
+       ADMIN_HOST="admin.localhost"
+
+   Далее необходимо направить эти урлы в hosts на ip:
+127.0.0.1. 
+На линукс открыть и отредактировать файл:
+
+       sudo nano /etc/hosts
+

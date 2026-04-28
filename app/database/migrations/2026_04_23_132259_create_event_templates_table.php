@@ -70,6 +70,12 @@ return new class extends Migration
             $table->tinyInteger('hour_end')->nullable();
             $table->tinyInteger('minute_end')->nullable();
 
+            $table->enum('date_mode', ['period', 'deadline'])
+                ->default('deadline')
+                ->comment('Определяет тип даты: период или дедлайн');
+            $table->dateTime('period_start')->nullable();
+            $table->dateTime('period_end')->nullable();
+            $table->dateTime('deadline')->nullable();
             $table->tinyInteger('time_set_by_user')->default(0);
 
             $table->timestamp('created_at')->useCurrent();
@@ -82,6 +88,8 @@ return new class extends Migration
 
             $table->tinyInteger('status')->default(2)
                 ->comment('3 - edit mode, 2 - creation mode, 1 - active, 0 - deleted');
+
+
 
             $table->boolean('has_call')->default(0);
             $table->boolean('has_sms')->default(0);

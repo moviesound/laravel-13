@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('chat_id', 60)->nullable();
 
-            $table->timestamp('date_add')
+            $table->timestamp('created_at')
                 ->useCurrent();
 
             $table->text('message')->nullable();
@@ -36,7 +36,7 @@ return new class extends Migration
 
             $table->index('user_id');
             $table->index('chat_id');
-            $table->index('date_add');
+            $table->index('created_at');
             $table->index('message_id');
             $table->index('type');
             $table->index('status');

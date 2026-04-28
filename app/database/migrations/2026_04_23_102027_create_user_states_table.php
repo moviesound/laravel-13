@@ -20,8 +20,6 @@ return new class extends Migration
             $table->dateTime('next_morning_digest')->nullable()->index();//index
             $table->dateTime('next_evening_digest')->nullable()->index();//index
 
-            $table->tinyInteger('morning_digest_status')->default(1)->index();//index
-            $table->tinyInteger('evening_digest_status')->default(1)->index();//index
         });
     }
 

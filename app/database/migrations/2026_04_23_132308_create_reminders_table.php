@@ -27,10 +27,13 @@ return new class extends Migration
                 'call'
             ])->nullable();
 
+            $table->timestamps();
+
 
             $table->index('template_id');
             $table->index('date_remind');
             $table->index('status');
+            $table->index('created_at');
         });
     }
 

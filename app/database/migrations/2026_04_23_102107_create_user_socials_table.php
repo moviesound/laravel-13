@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_socials', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('user_id');//primary index
             $table->string('type', 20);//primary index
 
-            $table->string('id', 60)->nullable();
+            $table->string('social_id', 60)->nullable();
             $table->unsignedTinyInteger('is_main')->default(1)->index();//index
             $table->unsignedTinyInteger('keyboard')->default(0)->index();//index
             $table->unsignedBigInteger('current_folder_s3')->nullable();
@@ -23,7 +24,7 @@ return new class extends Migration
             $table->timestamps();//created_at index
 
             // ключи
-            $table->primary(['user_id', 'type']);
+            $table->unique(['user_id', 'type'], 'user');
             $table->unique(['type', 'id'], 'id');
 
             $table->index('created_at');
