@@ -8,6 +8,20 @@ use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Support\Facades\Cache;
 
+/**
+ * Как проверить работу кэша в классе через консоль?
+ * Проверяется после накатывания миграций, иначе база пустая
+ *
+ * 1. Заходим в tinker:
+ * php artisan tinker
+ *
+ * 2. Выполняем там запрос в БД через эту модель:
+ * App\Models\SysText::get('free', 'ru');
+ *
+ * 3. Проверяем кэш:
+ * Cache::tags(['sys_text'])->get('sys_text:ru:free');
+ *
+ */
 #[Fillable([
     'alias',
     'lang',
